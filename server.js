@@ -144,25 +144,6 @@ app.get('/api/clients', (req, _res, next) => {
   });
 });
 
-app.post('/api/clients', (req, _res, next) => {
-  req.requiredroles = ["admin"]
-  next()
-}, verifyTokenAndRole, (req, res) => {
-  const { lastname, firstname, email, password } = req.body;
-  const hashedPassword = bcrypt.hashSync(password, 8);
-
-  const sql = 'INSERT INTO users (lastname, firstname, email, password, role) VALUES (?, ?, ?, ?, ?)';
-  db.query(sql, [lastname, firstname, email, hashedPassword, 'client'], (err, result) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Server error');
-      return;
-    }
-
-    res.status(201).send('Client added');
-  });
-});
-
 app.get('/api/client/:id', (req, _res, next) => {
   req.requiredroles = ["admin", "client"]
   next()
@@ -296,3 +277,5 @@ app.get("*", (_, res) => {
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
+
+module.exports = app;
