@@ -1,0 +1,44 @@
+.vehicules-list {
+  padding: 20px;
+}
+
+.vehicules-list h2 {
+  margin-bottom: 20px;
+}
+
+.vehicules-list table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.vehicules-list th, .vehicules-list td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.vehicules-list th {
+  background-color: #f2f2f2;
+}
+
+.vehicules-list tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.vehicules-list tr:hover {
+  background-color: #ddd;
+}
+
+.vehicules-list button {
+  margin-right: 5px;
+  padding: 5px 10px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.vehicules-list button:hover {
+  background-color: #0056b3;
+}
