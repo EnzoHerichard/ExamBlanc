@@ -1,3 +1,4 @@
+// src/VehiculesList.tsx
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VehiculesList.css';
@@ -6,6 +7,7 @@ const baseURI = import.meta.env.VITE_API_BASE_URL;
 
 const VehiculesList = () => {
   const [vehicules, setVehicules] = useState([]);
+  const [error, setError] = useState(null); // Ajouté pour l'affichage des erreurs
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,11 +23,12 @@ const VehiculesList = () => {
         if (response.ok) {
           const data = await response.json();
           setVehicules(data);
+          setError(null); // Réinitialiser l'erreur en cas de succès
         } else {
-          alert('Erreur lors de la récupération des véhicules');
+          setError('Erreur lors de la récupération des véhicules'); // Définir le message d'erreur
         }
       } catch (error) {
-        alert('Erreur réseau');
+        setError('Erreur réseau'); // Définir le message d'erreur en cas d'exception
       }
     };
 
@@ -58,6 +61,7 @@ const VehiculesList = () => {
     <div className="vehicules-list">
       <button onClick={() => navigate('/dashboard')}>Retour</button>
       <h2>Liste des Véhicules</h2>
+      {error && <p className="error-message">{error}</p>} {/* Afficher l'erreur ici */}
       <table>
         <thead>
           <tr>
